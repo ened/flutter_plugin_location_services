@@ -1,4 +1,4 @@
-package com.example.flutterlocationpluginexample;
+package asia.ivity.flutter.location_services.example;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

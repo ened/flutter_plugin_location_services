@@ -1,4 +1,5 @@
 #import "LocationServicesPlugin.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation LocationServicesPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -10,11 +11,15 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-  if ([@"getPlatformVersion" isEqualToString:call.method]) {
-    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
+  if ([@"isLocationServiceActivated" isEqualToString:call.method]) {
+    result([NSNumber numberWithBool:[self handleIsLocationServiceActivated]]);
   } else {
     result(FlutterMethodNotImplemented);
   }
+}
+
+- (BOOL)handleIsLocationServiceActivated {
+    return CLLocationManager.locationServicesEnabled;
 }
 
 @end
